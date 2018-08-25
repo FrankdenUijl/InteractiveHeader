@@ -1,3 +1,4 @@
+require("firebase/database");
 import "reflect-metadata";
 import PIXI = require("pixi.js");
 import container  from "./inversify.config";
@@ -5,7 +6,7 @@ import { ExecutionOrderController } from "./ExecutionOrderController";
 import { Game } from "./Game";
 
 //WebGL is the preferred renderer as it is a lot faster. If webGL is not supported by the browser then this function will return a canvas renderer
-var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, { "backgroundColor": 0x008080 });
+var renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, { "backgroundColor": 0x1C1C1C });
 document.body.appendChild(renderer.view);
 document.body.style.margin = "0px";
 document.body.style.overflow = "hidden";
@@ -26,7 +27,7 @@ PIXI.loader.load(() =>
 });
 
 //Get the game container
-var gameContainer = container.get(Game).container;
+var gameContainer = container.get(Game).Container;
 
 var render = () => {
     renderer.render(gameContainer);
