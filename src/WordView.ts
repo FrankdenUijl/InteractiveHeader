@@ -34,7 +34,7 @@ export class WordView implements Awake, Start
 
     private readonly container: PIXI.Container = new PIXI.Container();
     private readonly background: PIXI.Graphics = new PIXI.Graphics();
-    private readonly word: PIXI.Text = new PIXI.Text('', {fontFamily : 'Arial', fontSize: 12, fill : 0xFFFFFF});
+    private word: PIXI.Text;
 
     public Init(wordController: WordController): void
     {
@@ -54,7 +54,8 @@ export class WordView implements Awake, Start
         this.setViewLocked();
         this.setViewPosition();
 
-        this.word.text = this.wordController.Word;
+        this.word = new PIXI.Text(this.wordController.Word, {fontFamily : 'Arial', fontSize: 12, fill : this.wordController.Color})
+
 
         this.background.lineStyle(0, 0x1E73BE, 1);
         this.background.beginFill(0x141414, 1);

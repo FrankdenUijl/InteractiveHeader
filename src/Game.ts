@@ -39,12 +39,13 @@ export class Game implements Start
         firebase.initializeApp(config);
 
         var defaultDatabase = firebase.database();
-        
+
         defaultDatabase.ref("Letters").once("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let word = new Word(childSnapshot.key, 
                     childSnapshot.child("x").val(), 
-                    childSnapshot.child("y").val());
+                    childSnapshot.child("y").val(),
+                    childSnapshot.child("color").exists() ? childSnapshot.child("color").val() : 0xFFFFFF);
               
                 let wordController = this.factoryWordController(word, childSnapshot.ref);
                 let wordView = <WordView>this.factoryWordView(wordController);

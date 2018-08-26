@@ -46,6 +46,11 @@ export class WordController implements Awake
         return this.word.IsYours;
     }
 
+    public get Color(): number 
+    {
+        return this.word.Color;
+    }
+
     private word: Word;
     private firebaseDatabaseRef: firebase.database.Reference;
 
@@ -110,11 +115,12 @@ export class WordController implements Awake
             this.word.SetYours(true);
             this.word.SetLocked(true);
         }
-        
+
         this.firebaseDatabaseRef.set({
             x: this.word.X,
             y: this.word.Y,
-            isLocked: isYours
+            isLocked: isYours,
+            color: this.word.Color
         });
     }
 
@@ -126,11 +132,12 @@ export class WordController implements Awake
         }
 
         this.word.SetPosition(x, y);
-        
+
         this.firebaseDatabaseRef.set({
             x: this.word.X,
             y: this.word.Y,
-            isLocked: true
+            isLocked: true,
+            color: this.word.Color
         });
     }
 }

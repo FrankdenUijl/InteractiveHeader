@@ -42,10 +42,16 @@ export class Word
         return this.isYours;
     }
 
+    public get Color(): number 
+    {
+        return this.color;
+    }
+
     private x: number;
     private y: number;
     private isLocked: boolean;
     private isYours: boolean;
+    private color: number;
 
     private readonly onNewPosition = new LiteEvent<number, number>();
     private readonly onIsYoursChange = new LiteEvent();
@@ -55,12 +61,14 @@ export class Word
 
     public constructor(word: string, 
         x: number, 
-        y: number)
+        y: number,
+        color: number)
     {
         this.word = word;
 
         this.x = x;
         this.y = y;
+        this.color = color;
     }
 
     public SetPosition(x: number, y: number): void
